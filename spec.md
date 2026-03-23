@@ -1,32 +1,34 @@
-# Furqan Emporium
+# Pt. Shivlal Ustad - Sweets & Bakery
 
 ## Current State
-New project. Empty backend and frontend scaffolding only.
+New project — no existing application files.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Full luxury e-commerce landing page for Furqan Emporium (Wholesale & Retailer)
-- Sticky navbar with brand name and gold accents
-- Full-width hero section: headline 'Premium Dinner Sets, Tea Sets & Luxury Gifts', subheadline about Khurja ceramic & glassware, CTA button
-- Trust badges bar: 'Since 1995', '30+ Years of Excellence & Trust', '4.8/5 Customer Rating', 'Wholesale & Retail'
-- Product showcase: 4 elegant cards (Royal Dinner Sets, Elegant Tea & Lemon Sets, Crystal Flower Pots, Exclusive Gift Items) with Unsplash placeholder images and hover effects
-- About/Brand Story section highlighting Khurja ceramic & glassware heritage
-- Customer Testimonials section with 4.8/5 star rating display
-- Contact section: owners Mohammad Furqan & Mohammad Faizan, phone +91-9837205395 and +91-9997712287 (clickable tel: links), address near Refahe Aam Inter College Khurja, embedded Google Map iframe
-- Footer with brand name, quick links, contact info
-- WhatsApp floating button (bottom-right) linking to wa.me/919837205395 with pulse animation
-- Smooth scroll, hover effects, gold dividers, mobile responsive
+- Full multi-page heritage website for Pt. Shivlal Ustad - Sweets & Bakery
+- Pages: Home, About Us, Products/Menu, Wedding Bhaji Boxes, Gallery, Contact
+- Hero section with brand title, tagline, hero heading, and premium hero image (Khurchan/Ghewar)
+- Product catalog: 6 items with prices and WhatsApp Order button per product
+- Premium Wedding Bhaji Boxes special section
+- Floating WhatsApp button site-wide
+- Instagram link button
+- "WE HAVE NO BRANCH" notice in header and footer
+- Footer with address, phone, WhatsApp, email, embedded Google Map
+- Footer disclaimer: prices may vary
 
 ### Modify
-- None
+- N/A
 
 ### Remove
-- None
+- N/A
 
 ## Implementation Plan
-1. Minimal Motoko backend (static actor, no data persistence needed)
-2. Single-page React frontend with all sections
-3. Custom CSS/Tailwind for gold palette and luxury styling
-4. Embedded Google Map iframe in contact section
-5. WhatsApp FAB with CSS pulse animation
+1. Backend: simple static data actor (products, contact info)
+2. Frontend pages: Home (hero + features + products preview + wedding section), About Us, Products/Menu (full price list), Wedding Bhaji Boxes, Gallery, Contact (map + form)
+3. Hero image: AI-generated Khurja Special Khurchan or Ghewar banner
+4. Product images: AI-generated per product
+5. WhatsApp Order button on each product card with pre-filled message to 9897905864
+6. Instagram button: https://www.instagram.com/shivlalustad?igsh=MW8wNnNxeHUzd3Y0YQ==
+7. Google Map embed: Binda Wala Chowk, Khurja
+8. Mobile-responsive layout throughout

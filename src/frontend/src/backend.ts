@@ -89,10 +89,105 @@ export class ExternalBlob {
         return this;
     }
 }
+export interface ShopInfo {
+    tagline: string;
+    name: string;
+    established: bigint;
+    email: string;
+    address: string;
+    phone: string;
+}
+export interface ContactSubmission {
+    name: string;
+    message: string;
+    phone: string;
+}
+export interface Product {
+    name: string;
+    note: string;
+    unit: string;
+    description: string;
+    price: bigint;
+}
 export interface backendInterface {
+    addProduct(name: string, description: string, price: bigint, unit: string, note: string): Promise<bigint>;
+    getAllProducts(): Promise<Array<Product>>;
+    getContactFormSubmissions(): Promise<Array<ContactSubmission>>;
+    getShopInfo(): Promise<ShopInfo>;
+    submitContactForm(name: string, phone: string, message: string): Promise<bigint>;
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async addProduct(arg0: string, arg1: string, arg2: bigint, arg3: string, arg4: string): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addProduct(arg0, arg1, arg2, arg3, arg4);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addProduct(arg0, arg1, arg2, arg3, arg4);
+            return result;
+        }
+    }
+    async getAllProducts(): Promise<Array<Product>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllProducts();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllProducts();
+            return result;
+        }
+    }
+    async getContactFormSubmissions(): Promise<Array<ContactSubmission>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getContactFormSubmissions();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getContactFormSubmissions();
+            return result;
+        }
+    }
+    async getShopInfo(): Promise<ShopInfo> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getShopInfo();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getShopInfo();
+            return result;
+        }
+    }
+    async submitContactForm(arg0: string, arg1: string, arg2: string): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitContactForm(arg0, arg1, arg2);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitContactForm(arg0, arg1, arg2);
+            return result;
+        }
+    }
 }
 export interface CreateActorOptions {
     agent?: Agent;

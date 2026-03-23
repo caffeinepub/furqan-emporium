@@ -16,8 +16,9 @@ export default {
     },
     extend: {
       fontFamily: {
+        display: ["'Cinzel'", "'Playfair Display'", "Georgia", "serif"],
         serif: ["'Playfair Display'", "Georgia", "serif"],
-        sans: ["'Inter'", "system-ui", "sans-serif"],
+        sans: ["'Poppins'", "system-ui", "sans-serif"],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -70,19 +71,25 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        gold: {
-          DEFAULT: "#D4AF37",
-          dark: "#C9A84C",
-          light: "#E8CC6A",
+        maroon: {
+          DEFAULT: "#661327",
+          dark: "#4a0d1c",
+          deep: "#3a0b17",
+          light: "#8b1a35",
         },
-        charcoal: {
-          DEFAULT: "#2F3437",
-          light: "#3A3F42",
-          dark: "#1E2427",
+        gold: {
+          DEFAULT: "#D4B061",
+          dark: "#b8923f",
+          light: "#e8cc82",
         },
         cream: {
-          DEFAULT: "#F3EFE5",
-          dark: "#E8E2D0",
+          DEFAULT: "#F3E6D1",
+          light: "#F9F0E4",
+          dark: "#e5d4b8",
+        },
+        darkbrown: {
+          DEFAULT: "#2A1A14",
+          light: "#3d2820",
         },
       },
       borderRadius: {
@@ -92,8 +99,9 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        gold: "0 4px 20px rgba(212,175,55,0.25)",
-        "gold-lg": "0 8px 40px rgba(212,175,55,0.3)",
+        gold: "0 4px 20px rgba(212,176,97,0.3)",
+        "gold-lg": "0 8px 40px rgba(212,176,97,0.4)",
+        maroon: "0 4px 20px rgba(102,19,39,0.3)",
       },
       keyframes: {
         "accordion-down": {
@@ -108,11 +116,16 @@ export default {
           from: { opacity: "0", transform: "translateY(30px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.7s ease-out forwards",
+        "fade-in": "fade-in 0.5s ease-out forwards",
       },
     },
   },

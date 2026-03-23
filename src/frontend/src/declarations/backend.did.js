@@ -8,10 +8,86 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const idlService = IDL.Service({});
+export const Product = IDL.Record({
+  'name' : IDL.Text,
+  'note' : IDL.Text,
+  'unit' : IDL.Text,
+  'description' : IDL.Text,
+  'price' : IDL.Nat,
+});
+export const ContactSubmission = IDL.Record({
+  'name' : IDL.Text,
+  'message' : IDL.Text,
+  'phone' : IDL.Text,
+});
+export const ShopInfo = IDL.Record({
+  'tagline' : IDL.Text,
+  'name' : IDL.Text,
+  'established' : IDL.Nat,
+  'email' : IDL.Text,
+  'address' : IDL.Text,
+  'phone' : IDL.Text,
+});
+
+export const idlService = IDL.Service({
+  'addProduct' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Nat, IDL.Text, IDL.Text],
+      [IDL.Nat],
+      [],
+    ),
+  'getAllProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
+  'getContactFormSubmissions' : IDL.Func(
+      [],
+      [IDL.Vec(ContactSubmission)],
+      ['query'],
+    ),
+  'getShopInfo' : IDL.Func([], [ShopInfo], ['query']),
+  'submitContactForm' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [IDL.Nat], []),
+});
 
 export const idlInitArgs = [];
 
-export const idlFactory = ({ IDL }) => { return IDL.Service({}); };
+export const idlFactory = ({ IDL }) => {
+  const Product = IDL.Record({
+    'name' : IDL.Text,
+    'note' : IDL.Text,
+    'unit' : IDL.Text,
+    'description' : IDL.Text,
+    'price' : IDL.Nat,
+  });
+  const ContactSubmission = IDL.Record({
+    'name' : IDL.Text,
+    'message' : IDL.Text,
+    'phone' : IDL.Text,
+  });
+  const ShopInfo = IDL.Record({
+    'tagline' : IDL.Text,
+    'name' : IDL.Text,
+    'established' : IDL.Nat,
+    'email' : IDL.Text,
+    'address' : IDL.Text,
+    'phone' : IDL.Text,
+  });
+  
+  return IDL.Service({
+    'addProduct' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Nat, IDL.Text, IDL.Text],
+        [IDL.Nat],
+        [],
+      ),
+    'getAllProducts' : IDL.Func([], [IDL.Vec(Product)], ['query']),
+    'getContactFormSubmissions' : IDL.Func(
+        [],
+        [IDL.Vec(ContactSubmission)],
+        ['query'],
+      ),
+    'getShopInfo' : IDL.Func([], [ShopInfo], ['query']),
+    'submitContactForm' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Nat],
+        [],
+      ),
+  });
+};
 
 export const init = ({ IDL }) => { return []; };

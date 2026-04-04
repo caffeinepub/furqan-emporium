@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Poppins:wght@300;400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,60 +6,59 @@
   :root {
     --radius: 0.5rem;
 
-    /* Maroon/Gold Heritage Palette – OKLCH L C H */
-    /* Cream background */
-    --background: 0.93 0.025 75;
-    --foreground: 0.2 0.04 45;
-    /* Card warm beige */
-    --card: 0.9 0.035 78;
-    --card-foreground: 0.2 0.04 45;
-    --popover: 0.93 0.025 75;
-    --popover-foreground: 0.2 0.04 45;
-    /* Maroon primary */
-    --primary: 0.25 0.13 15;
-    --primary-foreground: 0.93 0.025 75;
-    /* Gold secondary */
-    --secondary: 0.76 0.1 82;
-    --secondary-foreground: 0.2 0.04 45;
-    /* Muted cream */
-    --muted: 0.88 0.02 75;
-    --muted-foreground: 0.45 0.03 45;
+    /* Shahji Dairy Dark Luxury Palette – OKLCH L C H */
+    /* Deep charcoal background */
+    --background: 0.13 0.005 260;
+    --foreground: 0.95 0.015 80;
+    /* Card dark */
+    --card: 0.16 0.005 260;
+    --card-foreground: 0.92 0.015 80;
+    --popover: 0.16 0.005 260;
+    --popover-foreground: 0.92 0.015 80;
+    /* Gold primary */
+    --primary: 0.76 0.1 82;
+    --primary-foreground: 0.13 0.005 260;
+    /* Cream secondary */
+    --secondary: 0.94 0.025 80;
+    --secondary-foreground: 0.13 0.005 260;
+    /* Muted dark */
+    --muted: 0.2 0.005 260;
+    --muted-foreground: 0.65 0.015 80;
     /* Gold accent */
     --accent: 0.76 0.1 82;
-    --accent-foreground: 0.2 0.04 45;
+    --accent-foreground: 0.13 0.005 260;
     /* Destructive */
     --destructive: 0.577 0.245 27.325;
     --destructive-foreground: 0.985 0 0;
     /* Borders */
-    --border: 0.8 0.05 75;
-    --input: 0.85 0.03 75;
+    --border: 0.25 0.01 260;
+    --input: 0.2 0.01 260;
     --ring: 0.76 0.1 82;
     /* Charts */
     --chart-1: 0.76 0.1 82;
-    --chart-2: 0.25 0.13 15;
+    --chart-2: 0.94 0.025 80;
     --chart-3: 0.55 0.08 60;
     --chart-4: 0.7 0.09 70;
-    --chart-5: 0.4 0.1 20;
+    --chart-5: 0.4 0.05 80;
     /* Sidebar */
-    --sidebar: 0.25 0.13 15;
-    --sidebar-foreground: 0.93 0.025 75;
+    --sidebar: 0.1 0.005 260;
+    --sidebar-foreground: 0.92 0.015 80;
     --sidebar-primary: 0.76 0.1 82;
-    --sidebar-primary-foreground: 0.2 0.04 45;
-    --sidebar-accent: 0.3 0.11 15;
-    --sidebar-accent-foreground: 0.93 0.025 75;
-    --sidebar-border: 0.35 0.1 15;
+    --sidebar-primary-foreground: 0.13 0.005 260;
+    --sidebar-accent: 0.18 0.005 260;
+    --sidebar-accent-foreground: 0.92 0.015 80;
+    --sidebar-border: 0.25 0.01 260;
     --sidebar-ring: 0.76 0.1 82;
 
-    /* Raw brand tokens (for gradients, patterns) */
-    --maroon: #661327;
-    --maroon-dark: #4a0d1c;
-    --maroon-deep: #3a0b17;
-    --gold: #d4b061;
-    --gold-light: #e8cc82;
-    --gold-dark: #b8923f;
-    --cream: #f3e6d1;
-    --cream-light: #f9f0e4;
-    --dark-brown: #2a1a14;
+    /* Brand raw tokens */
+    --charcoal: #1a1a1a;
+    --charcoal-deep: #111111;
+    --cream: #f5f5dc;
+    --gold-start: #d4af37;
+    --gold-end: #f9e27d;
+    --gold-mid: #e8c84a;
+    --gold-dark: #b8932a;
+    --gold-glow: rgba(212, 175, 55, 0.5);
   }
 
   * {
@@ -74,73 +71,179 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Poppins", system-ui, sans-serif;
-    background-color: var(--cream-light);
-    color: var(--dark-brown);
+    font-family: "Montserrat", system-ui, sans-serif;
+    background-color: var(--charcoal);
+    color: var(--cream);
   }
 
   h1,
   h2,
   h3,
   h4 {
-    font-family: "Cinzel", "Playfair Display", Georgia, serif;
+    font-family: "Playfair Display", Georgia, serif;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: "Cinzel", "Playfair Display", Georgia, serif;
+    font-family: "Playfair Display", Georgia, serif;
   }
   .font-body {
-    font-family: "Poppins", system-ui, sans-serif;
+    font-family: "Montserrat", system-ui, sans-serif;
   }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, var(--gold-start), var(--gold-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .text-gold {
-    color: var(--gold);
+    color: var(--gold-start);
   }
-  .text-maroon {
-    color: var(--maroon);
+
+  /* Gold gradient background */
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, var(--gold-start), var(--gold-end));
   }
-  .bg-maroon {
-    background-color: var(--maroon);
+
+  .bg-charcoal {
+    background-color: var(--charcoal);
   }
-  .bg-maroon-dark {
-    background-color: var(--maroon-dark);
+
+  .bg-charcoal-deep {
+    background-color: var(--charcoal-deep);
   }
-  .bg-gold {
-    background-color: var(--gold);
-  }
-  .bg-cream-base {
+
+  .bg-cream {
     background-color: var(--cream);
   }
-  .bg-cream-light {
-    background-color: var(--cream-light);
-  }
+
   .border-gold {
-    border-color: var(--gold);
+    border-color: var(--gold-start);
   }
-  .border-maroon {
-    border-color: var(--maroon);
+
+  .border-gold-gradient {
+    border-image: linear-gradient(135deg, var(--gold-start), var(--gold-end)) 1;
   }
 }
 
-/* WhatsApp pulse animation */
-@keyframes whatsapp-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
+/* Gold glow button hover */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-start), var(--gold-end));
+  color: var(--charcoal);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.whatsapp-pulse {
-  animation: whatsapp-pulse 2s infinite;
+.btn-gold:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.65);
 }
 
-/* Gold shimmer */
-@keyframes gold-shimmer {
+.btn-gold-outline {
+  border: 1.5px solid var(--gold-start);
+  color: var(--gold-start);
+  background: transparent;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease,
+    color 0.25s ease;
+}
+.btn-gold-outline:hover {
+  background: linear-gradient(135deg, var(--gold-start), var(--gold-end));
+  color: var(--charcoal);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+/* Nav link */
+.nav-link {
+  position: relative;
+  color: rgba(245, 245, 220, 0.85);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(135deg, var(--gold-start), var(--gold-end));
+  transition: width 0.25s ease;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--gold-start);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Product floating card */
+.floating-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.floating-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.3);
+}
+
+/* Signature menu card */
+.menu-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+.menu-card:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+}
+.menu-card:hover .menu-card-img {
+  transform: scale(1.04);
+}
+.menu-card-img {
+  transition: transform 0.4s ease;
+}
+
+/* Fade-in-up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.fade-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gold shimmer animation */
+@keyframes goldShimmer {
   0% {
     background-position: -200% center;
   }
@@ -152,69 +255,74 @@
   background: linear-gradient(
     90deg,
     var(--gold-dark),
-    var(--gold),
-    var(--gold-light),
-    var(--gold),
+    var(--gold-start),
+    var(--gold-end),
+    var(--gold-start),
     var(--gold-dark)
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gold-shimmer 4s linear infinite;
+  animation: goldShimmer 4s linear infinite;
 }
 
-/* Mandala/Paisley background pattern */
-.heritage-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4B061' fill-opacity='0.08'%3E%3Cpath d='M30 0c16.569 0 30 13.431 30 30 0 16.569-13.431 30-30 30C13.431 60 0 46.569 0 30 0 13.431 13.431 0 30 0zm0 4C15.64 4 4 15.64 4 30c0 14.36 11.64 26 26 26 14.36 0 26-11.64 26-26C56 15.64 44.36 4 30 4zm0 8c9.941 0 18 8.059 18 18S39.941 48 30 48 12 39.941 12 30s8.059-18 18-18zm0 4c-7.732 0-14 6.268-14 14s6.268 14 14 14 14-6.268 14-14-6.268-14-14-14z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+/* WhatsApp pulse */
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+.whatsapp-pulse {
+  animation: whatsappPulse 2.5s infinite;
 }
 
-.maroon-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4B061' fill-opacity='0.12'%3E%3Cpath d='M30 0c16.569 0 30 13.431 30 30 0 16.569-13.431 30-30 30C13.431 60 0 46.569 0 30 0 13.431 13.431 0 30 0zm0 4C15.64 4 4 15.64 4 30c0 14.36 11.64 26 26 26 14.36 0 26-11.64 26-26C56 15.64 44.36 4 30 4zm0 8c9.941 0 18 8.059 18 18S39.941 48 30 48 12 39.941 12 30s8.059-18 18-18zm0 4c-7.732 0-14 6.268-14 14s6.268 14 14 14 14-6.268 14-14-6.268-14-14-14z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+/* Parallax section */
+.parallax-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
-/* Nav link */
-.nav-link {
-  position: relative;
-  color: rgba(243, 230, 209, 0.85);
-  text-decoration: none;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--gold);
-  transition: width 0.25s ease;
-}
-.nav-link:hover,
-.nav-link.active {
-  color: var(--gold);
-}
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
+/* Gold divider */
+.gold-divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(135deg, var(--gold-start), var(--gold-end));
+  margin: 0 auto;
 }
 
-/* Product card hover */
-.product-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Glassmorphism header */
+.glass-header {
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid;
+  border-image: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold-start),
+      transparent
+    )
+    1;
 }
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(102, 19, 39, 0.25);
+
+/* Scroll indicator */
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
 }
-.card-image {
-  transition: transform 0.4s ease;
-}
-.product-card:hover .card-image {
-  transform: scale(1.05);
+.scroll-bounce {
+  animation: scrollBounce 1.8s ease-in-out infinite;
 }

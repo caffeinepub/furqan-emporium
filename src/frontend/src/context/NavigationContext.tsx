@@ -7,13 +7,7 @@ import {
   useState,
 } from "react";
 
-export type Page =
-  | "home"
-  | "about"
-  | "products"
-  | "wedding"
-  | "gallery"
-  | "contact";
+export type Page = "home" | "about" | "menu" | "privacy" | "terms";
 
 interface NavigationContextType {
   currentPage: Page;
@@ -22,14 +16,7 @@ interface NavigationContextType {
 
 const NavigationContext = createContext<NavigationContextType | null>(null);
 
-const VALID_PAGES: Page[] = [
-  "home",
-  "about",
-  "products",
-  "wedding",
-  "gallery",
-  "contact",
-];
+const VALID_PAGES: Page[] = ["home", "about", "menu", "privacy", "terms"];
 
 function getPageFromHash(): Page {
   const hash = window.location.hash.slice(1) as Page;

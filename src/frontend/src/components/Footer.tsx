@@ -1,238 +1,164 @@
-import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { type Page, useNavigation } from "../context/NavigationContext";
-
-const navLinks: { label: string; page: Page }[] = [
-  { label: "Home", page: "home" },
-  { label: "Humari Kahani", page: "about" },
-  { label: "Mithaiyaan", page: "products" },
-  { label: "Wedding Gifts", page: "wedding" },
-  { label: "Gallery", page: "gallery" },
-  { label: "Sampark", page: "contact" },
-];
+import { Instagram } from "lucide-react";
+import { useNavigation } from "../context/NavigationContext";
 
 export default function Footer() {
   const { navigate } = useNavigation();
   const year = new Date().getFullYear();
+  const hostname = encodeURIComponent(window.location.hostname);
 
   return (
     <footer
-      className="maroon-pattern"
-      style={{ backgroundColor: "var(--maroon-dark)", color: "var(--cream)" }}
-      data-ocid="footer"
+      style={{ backgroundColor: "var(--charcoal-deep)" }}
+      className="text-cream"
     >
       {/* Gold top border */}
       <div
         style={{
-          height: "3px",
+          height: "1px",
           background:
-            "linear-gradient(90deg, var(--maroon-deep), var(--gold), var(--maroon-deep))",
+            "linear-gradient(90deg, transparent, var(--gold-start), transparent)",
         }}
       />
 
-      {/* No Branch Banner */}
-      <div
-        className="text-center py-3 font-bold tracking-widest text-sm font-display"
-        style={{
-          backgroundColor: "rgba(212,176,97,0.15)",
-          borderBottom: "1px solid rgba(212,176,97,0.3)",
-          color: "var(--gold)",
-        }}
-      >
-        🚫 WE HAVE NO BRANCH — SIRF BINDA WALA CHOWK, KHURJA MEIN MILTE HAIN 🚫
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                className="w-12 h-12 rounded-full flex items-center justify-center border-2"
-                style={{
-                  borderColor: "var(--gold)",
-                  background: "rgba(212,176,97,0.15)",
-                }}
-              >
-                <span style={{ fontSize: "1.5rem" }}>🪔</span>
-              </div>
-              <div>
-                <div
-                  className="font-display text-sm tracking-wider"
-                  style={{ color: "var(--gold)" }}
-                >
-                  Pt. Shivlal Ustad
-                </div>
-                <div
-                  className="font-body text-xs"
-                  style={{ color: "rgba(243,230,209,0.7)" }}
-                >
-                  Sweets & Bakery
-                </div>
-              </div>
-            </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Col 1: Brand */}
+          <div>
+            <img
+              src="/assets/generated/shahji-dairy-logo-transparent.dim_400x400.png"
+              alt="Shahji Dairy"
+              className="h-20 w-auto mb-4"
+            />
             <p
-              className="text-sm font-body leading-relaxed"
-              style={{ color: "rgba(243,230,209,0.75)" }}
+              className="font-body text-sm italic leading-relaxed mb-5"
+              style={{ color: "rgba(245,245,220,0.5)" }}
             >
-              Pure Desi Ghee ki mishthaan. Khurja ki sabse purani aur
-              bharosemand mithai ki dukaan. Since 1908.
+              Purity. Heritage. Trust. Since 1957.
             </p>
+            <a
+              href="https://www.instagram.com/shahjidairyofficial/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full transition-transform hover:scale-110"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--gold-start), var(--gold-end))",
+              }}
+              aria-label="Instagram"
+              data-ocid="footer.instagram.link"
+            >
+              <Instagram size={20} color="#1A1A1A" strokeWidth={2} />
+            </a>
           </div>
 
-          {/* Nav links */}
+          {/* Col 2: Contact */}
           <div>
             <h4
-              className="font-display text-sm tracking-widest uppercase mb-4"
-              style={{ color: "var(--gold)" }}
+              className="font-display text-lg mb-5"
+              style={{ color: "var(--gold-start)" }}
+            >
+              Visit Us
+            </h4>
+            <div
+              className="space-y-3 font-body text-sm"
+              style={{ color: "rgba(245,245,220,0.7)" }}
+            >
+              <p>CPW4+Q2J, Shaji Road, Sikandrabad</p>
+              <p>
+                <a
+                  href="tel:+918979369874"
+                  className="hover:text-gold transition-colors"
+                  style={{ color: "rgba(245,245,220,0.7)" }}
+                >
+                  📞 089793 69874
+                </a>
+              </p>
+              <p>⏰ 09:30 AM – 11:30 PM (Daily)</p>
+            </div>
+          </div>
+
+          {/* Col 3: Quick Links */}
+          <div>
+            <h4
+              className="font-display text-lg mb-5"
+              style={{ color: "var(--gold-start)" }}
             >
               Quick Links
             </h4>
-            <ul className="space-y-2">
-              {navLinks.map((link) => (
-                <li key={link.page}>
-                  <button
-                    type="button"
-                    onClick={() => navigate(link.page)}
-                    className="text-sm font-body hover:text-gold transition-colors"
-                    style={{ color: "rgba(243,230,209,0.75)" }}
-                    data-ocid={`footer.${link.page}.link`}
-                  >
-                    {link.label}
-                  </button>
-                </li>
+            <div className="flex flex-col gap-2.5">
+              {[
+                { label: "Home", page: "home" as const },
+                { label: "About Us", page: "about" as const },
+                { label: "Privacy Policy", page: "privacy" as const },
+                { label: "Terms & Conditions", page: "terms" as const },
+              ].map((link) => (
+                <button
+                  key={link.page}
+                  type="button"
+                  onClick={() => navigate(link.page)}
+                  className="text-left font-body text-sm transition-colors hover:text-gold"
+                  style={{ color: "rgba(245,245,220,0.6)" }}
+                  data-ocid={`footer.${link.page}.link`}
+                >
+                  {link.label}
+                </button>
               ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4
-              className="font-display text-sm tracking-widest uppercase mb-4"
-              style={{ color: "var(--gold)" }}
-            >
-              Sampark Karein
-            </h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <MapPin
-                  size={16}
-                  className="mt-0.5 flex-shrink-0"
-                  style={{ color: "var(--gold)" }}
-                />
-                <span
-                  className="text-sm font-body"
-                  style={{ color: "rgba(243,230,209,0.8)" }}
-                >
-                  Binda Wala Chowk,
-                  <br />
-                  Khurja-203131 (U.P.)
-                </span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone size={16} style={{ color: "var(--gold)" }} />
-                <a
-                  href="tel:+919756605864"
-                  className="text-sm font-body hover:text-gold transition-colors"
-                  style={{ color: "rgba(243,230,209,0.8)" }}
-                >
-                  +91-9756605864
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <MessageCircle size={16} style={{ color: "#25D366" }} />
-                <a
-                  href="https://wa.me/919897905864"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-body hover:text-gold transition-colors"
-                  style={{ color: "rgba(243,230,209,0.8)" }}
-                >
-                  +91-9897905864
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail size={16} style={{ color: "var(--gold)" }} />
-                <a
-                  href="mailto:shivlalustad@gmail.com"
-                  className="text-sm font-body hover:text-gold transition-colors"
-                  style={{ color: "rgba(243,230,209,0.8)" }}
-                >
-                  shivlalustad@gmail.com
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4
-              className="font-display text-sm tracking-widest uppercase mb-4"
-              style={{ color: "var(--gold)" }}
-            >
-              Social Media
-            </h4>
-            <div className="flex gap-3 mb-4">
-              <a
-                href="https://www.instagram.com/shivlalustad?igsh=MW8wNnNxeHUzd3Y0YQ=="
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)",
-                }}
-                data-ocid="footer.instagram.link"
-              >
-                <Instagram size={18} color="white" />
-              </a>
-              <a
-                href="https://wa.me/919897905864"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110"
-                style={{ backgroundColor: "#25D366" }}
-                data-ocid="footer.whatsapp.link"
-              >
-                <MessageCircle size={18} color="white" />
-              </a>
             </div>
-            <p
-              className="text-xs font-body"
-              style={{ color: "rgba(243,230,209,0.6)" }}
-            >
-              Instagram pe humse jude rahein aur naye offers paaein!
-            </p>
           </div>
         </div>
       </div>
 
-      {/* Disclaimer + copyright */}
+      {/* Bottom bar */}
       <div
-        style={{ borderTop: "1px solid rgba(212,176,97,0.3)" }}
-        className="max-w-7xl mx-auto px-4 py-4 text-center"
+        style={{
+          borderTop: "1px solid rgba(212,175,55,0.2)",
+        }}
       >
-        <p
-          className="text-xs font-body mb-2"
-          style={{ color: "rgba(243,230,209,0.7)" }}
-        >
-          ⚠️ Prices may vary as per market rates. Please contact us for bulk
-          orders.
-        </p>
-        <p
-          className="text-xs font-body"
-          style={{ color: "rgba(243,230,209,0.5)" }}
-        >
-          © {year} Pt. Shivlal Ustad - Sweets & Bakery. All rights reserved. |
-          Built with ❤️ using{" "}
-          <a
-            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:opacity-80"
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p
+            className="font-body text-xs"
+            style={{ color: "rgba(245,245,220,0.45)" }}
           >
-            caffeine.ai
-          </a>
-        </p>
+            © {year} Shahji Dairy. All Rights Reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => navigate("privacy")}
+              className="font-body text-xs transition-colors hover:text-gold"
+              style={{ color: "var(--gold-start)" }}
+              data-ocid="footer.privacy.link"
+            >
+              Privacy Policy
+            </button>
+            <span style={{ color: "rgba(212,175,55,0.4)" }}>·</span>
+            <button
+              type="button"
+              onClick={() => navigate("terms")}
+              className="font-body text-xs transition-colors hover:text-gold"
+              style={{ color: "var(--gold-start)" }}
+              data-ocid="footer.terms.link"
+            >
+              Terms & Conditions
+            </button>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-6 pb-4">
+          <p
+            className="font-body text-center"
+            style={{ fontSize: "0.65rem", color: "rgba(245,245,220,0.3)" }}
+          >
+            Prices may vary. Please contact us for bulk orders. ·{" "}
+            <a
+              href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "rgba(212,175,55,0.35)" }}
+            >
+              Built with ♥ using caffeine.ai
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

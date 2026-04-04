@@ -15,26 +15,8 @@ export interface ContactSubmission {
   'message' : string,
   'phone' : string,
 }
-export interface Product {
-  'name' : string,
-  'note' : string,
-  'unit' : string,
-  'description' : string,
-  'price' : bigint,
-}
-export interface ShopInfo {
-  'tagline' : string,
-  'name' : string,
-  'established' : bigint,
-  'email' : string,
-  'address' : string,
-  'phone' : string,
-}
 export interface _SERVICE {
-  'addProduct' : ActorMethod<[string, string, bigint, string, string], bigint>,
-  'getAllProducts' : ActorMethod<[], Array<Product>>,
   'getContactFormSubmissions' : ActorMethod<[], Array<ContactSubmission>>,
-  'getShopInfo' : ActorMethod<[], ShopInfo>,
   'submitContactForm' : ActorMethod<[string, string, string], bigint>,
 }
 export declare const idlService: IDL.ServiceClass;

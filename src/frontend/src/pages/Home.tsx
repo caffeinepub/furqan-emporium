@@ -1,460 +1,543 @@
-import {
-  Award,
-  ChevronRight,
-  Clock,
-  MessageCircle,
-  ShieldCheck,
-  Star,
-} from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
-import OrnamentalDivider from "../components/OrnamentalDivider";
-import ProductCard from "../components/ProductCard";
 import { useNavigation } from "../context/NavigationContext";
+import { useFadeInUp } from "../hooks/useFadeInUp";
 
-const featuredProducts = [
+const WHATSAPP_ORDER =
+  "https://wa.me/918979369843?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%B6%E0%A4%BE%E0%A4%B9%E0%A4%9C%E0%A5%80%20%E0%A4%A1%E0%A5%87%E0%A4%AF%E0%A4%B0%E0%A5%80%2C%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%86%E0%A4%AA%E0%A4%95%E0%A5%87%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%80%E0%A4%AE%E0%A4%BF%E0%A4%AF%E0%A4%AE%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%8B%E0%A4%A1%E0%A4%95%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B8%20(A2%20Ghee%20%26%20Sweets)%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%B0%E0%A5%87%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%94%E0%A4%B0%20%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%8F%20%E0%A4%94%E0%A4%B0%20%E0%A4%AE%E0%A5%88%E0%A4%82%20%E0%A4%91%E0%A4%B0%E0%A5%8D%E0%A4%A1%E0%A4%B0%20%E0%A4%95%E0%A4%B0%E0%A4%A8%E0%A4%BE%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A4%BE%20%E0%A4%B9%E0%A5%82%E0%A4%81%E0%A5%A4";
+
+const products = [
   {
-    name: "Khurja Special Khurchan",
-    price: "₹650/kg",
-    image: "/assets/generated/product-khurchan.dim_600x500.jpg",
+    name: "Fresh Milk",
+    desc: "Farm-fresh A2 milk, rich in nutrients and natural goodness. Delivered daily.",
+    img: "/assets/generated/product-fresh-milk.dim_800x800.jpg",
   },
   {
-    name: "Mawa Ghewar",
-    price: "₹750/kg",
-    image: "/assets/generated/product-ghewar.dim_600x500.jpg",
-    note: "24 ghante ke andar consume karein best taste ke liye",
+    name: "Pure A2 Ghee",
+    desc: "Handcrafted using the ancient Bilona method. Golden, aromatic, and pure.",
+    img: "/assets/generated/product-a2-ghee.dim_800x800.jpg",
   },
   {
-    name: "Kaju Katli",
-    price: "₹1000/kg",
-    image: "/assets/generated/product-kaju-katli.dim_600x500.jpg",
+    name: "Mawa Sweets",
+    desc: "Traditional khurchan, barfi, and peda — made with pure desi ghee.",
+    img: "/assets/generated/product-mawa-sweets.dim_800x800.jpg",
+  },
+  {
+    name: "Homestyle Meals",
+    desc: "Wholesome dal makhani, fresh rotis, and hearty meals just like home.",
+    img: "/assets/generated/product-homestyle-meals.dim_800x800.jpg",
   },
 ];
 
-const trustBadges = [
-  { icon: Clock, label: "115+ Saal Ki Parampara", sub: "Since 1908" },
-  { icon: Star, label: "100% Pure Desi Ghee", sub: "Koi milawat nahi" },
-  { icon: Award, label: "Khurja Ki Shaan", sub: "Sabse purani dukaan" },
-  { icon: ShieldCheck, label: "Hygienic Preparation", sub: "Swachh aur fresh" },
-];
+function TrustBar() {
+  const ref = useFadeInUp<HTMLElement>();
+  return (
+    <section
+      ref={ref}
+      className="fade-in-up"
+      style={{ backgroundColor: "var(--charcoal)" }}
+      data-ocid="home.trust.section"
+    >
+      <div className="max-w-5xl mx-auto px-6 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+          {[
+            {
+              icon: "✦",
+              title: "Pure A2 Quality",
+              sub: "100% authentic A2 cow milk",
+            },
+            {
+              icon: "✦",
+              title: "Authentic Bilona Method",
+              sub: "Ancient hand-churned process",
+            },
+            {
+              icon: "✦",
+              title: "FSSAI Certified",
+              sub: "Food safety guaranteed",
+            },
+          ].map((item, i) => (
+            <div
+              key={item.title}
+              className="relative flex flex-col items-center text-center px-8 py-6"
+            >
+              {i > 0 && (
+                <div
+                  className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-16"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent, var(--gold-start), transparent)",
+                  }}
+                />
+              )}
+              <div
+                className="text-2xl mb-3"
+                style={{ color: "var(--gold-start)" }}
+              >
+                {item.icon}
+              </div>
+              <h3
+                className="font-body font-600 text-sm tracking-widest uppercase mb-1"
+                style={{ color: "var(--cream)" }}
+              >
+                {item.title}
+              </h3>
+              <p
+                className="font-body text-xs"
+                style={{ color: "rgba(245,245,220,0.55)" }}
+              >
+                {item.sub}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HeritageSplitScreen() {
+  const leftRef = useFadeInUp<HTMLDivElement>();
+  const rightRef = useFadeInUp<HTMLDivElement>();
+  return (
+    <section
+      className="flex flex-col lg:flex-row min-h-[480px]"
+      data-ocid="home.heritage.section"
+    >
+      {/* Left: Dark */}
+      <div
+        ref={leftRef}
+        className="fade-in-up flex-1 flex flex-col justify-center px-10 lg:px-16 py-16"
+        style={{ backgroundColor: "var(--charcoal)" }}
+      >
+        <span
+          className="font-body text-xs tracking-[0.2em] uppercase mb-4 block"
+          style={{ color: "var(--gold-start)" }}
+        >
+          The Origin
+        </span>
+        <h2
+          className="font-display text-3xl lg:text-4xl mb-2 pb-3 border-b-2 border-gold inline-block"
+          style={{
+            color: "var(--cream)",
+            borderImage:
+              "linear-gradient(135deg, var(--gold-start), var(--gold-end)) 1",
+          }}
+        >
+          A Legacy Born in 1957
+        </h2>
+        <div
+          className="w-16 h-0.5 mb-6 mt-1"
+          style={{
+            background:
+              "linear-gradient(135deg, var(--gold-start), var(--gold-end))",
+          }}
+        />
+        <p
+          className="font-body text-sm leading-relaxed max-w-md"
+          style={{ color: "rgba(245,245,220,0.7)" }}
+        >
+          Late Shri Arjun Das Ahuja established Shahji Dairy in 1957 in Meerut.
+          With a deep commitment to purity and the ancient Bilona method of
+          churning A2 ghee, he built a legacy of trust that families across
+          generations have cherished. Every drop of ghee carried the warmth of
+          tradition and the promise of purity.
+        </p>
+      </div>
+
+      {/* Right: Cream */}
+      <div
+        ref={rightRef}
+        className="fade-in-up flex-1 flex flex-col justify-center px-10 lg:px-16 py-16"
+        style={{ backgroundColor: "var(--cream)" }}
+      >
+        <span
+          className="font-body text-xs tracking-[0.2em] uppercase mb-4 block"
+          style={{ color: "var(--charcoal)" }}
+        >
+          The Evolution
+        </span>
+        <h2
+          className="font-display text-3xl lg:text-4xl mb-2 pb-3 inline-block"
+          style={{ color: "var(--charcoal)" }}
+        >
+          Salamat Shahji Dairy Today
+        </h2>
+        <div
+          className="w-16 h-0.5 mb-6 mt-1"
+          style={{ background: "var(--charcoal)" }}
+        />
+        <p
+          className="font-body text-sm leading-relaxed max-w-md"
+          style={{ color: "rgba(26,26,26,0.7)" }}
+        >
+          Continuing the legacy, Ibad Shah established Salamat Shahji Dairy —
+          bringing authentic A2 ghee, fresh dairy products, mawa sweets, and
+          wholesome homestyle meals to Delhi. Today, Shahji Dairy is more than a
+          brand; it is a heritage that lives in every home it serves.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function ParallaxSection() {
+  const ref = useFadeInUp<HTMLDivElement>();
+  const { navigate } = useNavigation();
+  return (
+    <section
+      className="parallax-bg relative"
+      style={{
+        backgroundImage:
+          "url('/assets/generated/heritage-bilona-parallax.dim_1600x900.jpg')",
+        minHeight: "480px",
+      }}
+      data-ocid="home.parallax.section"
+    >
+      <div
+        className="absolute inset-0"
+        style={{ background: "rgba(26,26,26,0.75)" }}
+      />
+      <div className="relative z-10 flex items-center justify-center min-h-[480px] px-6">
+        <div ref={ref} className="fade-in-up text-center max-w-2xl">
+          <span
+            className="font-body text-xs tracking-[0.25em] uppercase mb-4 block"
+            style={{ color: "var(--gold-start)" }}
+          >
+            Our Process
+          </span>
+          <h2
+            className="font-display text-3xl lg:text-4xl mb-6"
+            style={{ color: "var(--cream)" }}
+          >
+            The Ancient Bilona Method
+          </h2>
+          <p
+            className="font-body text-sm leading-relaxed mb-8"
+            style={{ color: "rgba(245,245,220,0.8)" }}
+          >
+            We follow the traditional Bilona method — curd is churned by hand
+            using a wooden churner, separating butter which is then slow-cooked
+            to produce the purest A2 ghee. No shortcuts. No compromises. Just
+            purity as nature intended.
+          </p>
+          <button
+            type="button"
+            onClick={() => navigate("about")}
+            className="btn-gold-outline px-8 py-3.5 rounded-full text-sm"
+            data-ocid="home.discover_story.button"
+          >
+            Discover Our Story
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SignatureMenu() {
+  const ref = useFadeInUp<HTMLElement>();
+  return (
+    <section
+      ref={ref}
+      className="fade-in-up py-20 lg:py-28"
+      style={{ backgroundColor: "var(--charcoal)" }}
+      data-ocid="home.menu.section"
+    >
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <h2 className="font-display text-3xl lg:text-4xl mb-2 text-gold-gradient">
+            Signature Dishes
+          </h2>
+          <div className="gold-divider my-4" />
+          <p
+            className="font-body text-sm tracking-widest uppercase"
+            style={{ color: "var(--gold-start)" }}
+          >
+            Crafted with Pure Desi Ghee
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            {
+              img: "/assets/generated/dish-butter-paneer.dim_800x600.jpg",
+              title: "Special Butter Paneer Masala",
+              desc: "Rich, creamy tomato gravy with fresh paneer cubes, finished with pure A2 ghee for an unmatched depth of flavor.",
+              tag: "Chef's Special",
+              ocid: "home.menu.item.1",
+            },
+            {
+              img: "/assets/generated/dish-matar-paneer.dim_800x600.jpg",
+              title: "Creamy Matar Paneer",
+              desc: "Fresh green peas and paneer in a golden, aromatic gravy slow-cooked with authentic spices and pure desi ghee.",
+              tag: "House Favourite",
+              ocid: "home.menu.item.2",
+            },
+          ].map((dish) => (
+            <motion.div
+              key={dish.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="menu-card rounded-2xl overflow-hidden"
+              style={{ backgroundColor: "#242424" }}
+              data-ocid={dish.ocid}
+            >
+              <div className="overflow-hidden aspect-[4/3]">
+                <img
+                  src={dish.img}
+                  alt={dish.title}
+                  className="menu-card-img w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <span
+                  className="font-body text-xs tracking-widest uppercase px-3 py-1 rounded-full mb-3 inline-block"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--gold-start), var(--gold-end))",
+                    color: "var(--charcoal)",
+                    fontWeight: 600,
+                  }}
+                >
+                  {dish.tag}
+                </span>
+                <h3
+                  className="font-display text-xl mt-2 mb-2"
+                  style={{ color: "var(--cream)" }}
+                >
+                  {dish.title}
+                </h3>
+                <p
+                  className="font-body text-sm leading-relaxed"
+                  style={{ color: "rgba(245,245,220,0.65)" }}
+                >
+                  {dish.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductCategories() {
+  const ref = useFadeInUp<HTMLElement>();
+  return (
+    <section
+      ref={ref}
+      className="fade-in-up py-20 lg:py-28"
+      style={{ backgroundColor: "var(--cream)" }}
+      data-ocid="home.products.section"
+    >
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <h2
+            className="font-display text-3xl lg:text-4xl mb-3"
+            style={{ color: "var(--charcoal)" }}
+          >
+            Our Premium Products
+          </h2>
+          <div
+            className="w-20 h-0.5 mx-auto"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--gold-start), var(--gold-end))",
+            }}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {products.map((p, i) => (
+            <motion.div
+              key={p.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="floating-card bg-white rounded-2xl shadow-xl overflow-hidden"
+              data-ocid={`home.products.item.${i + 1}`}
+            >
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <h3
+                  className="font-display text-lg mb-1"
+                  style={{ color: "var(--charcoal)" }}
+                >
+                  {p.name}
+                </h3>
+                <p
+                  className="font-body text-xs leading-relaxed mb-4"
+                  style={{ color: "rgba(26,26,26,0.6)" }}
+                >
+                  {p.desc}
+                </p>
+                <a
+                  href={WHATSAPP_ORDER}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-gold block text-center py-2.5 rounded-full text-xs tracking-widest uppercase"
+                  data-ocid={`home.products.order.button.${i + 1}`}
+                >
+                  Order Now
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutTeaser() {
+  const ref = useFadeInUp<HTMLElement>();
+  const { navigate } = useNavigation();
+  return (
+    <section
+      ref={ref}
+      className="fade-in-up py-20 lg:py-28"
+      style={{ backgroundColor: "var(--charcoal)" }}
+      data-ocid="home.about_teaser.section"
+    >
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex-1">
+            <h2 className="font-display text-4xl lg:text-5xl leading-tight text-gold-gradient">
+              67 Years of Pure Tradition
+            </h2>
+          </div>
+          <div className="flex-1">
+            <p
+              className="font-body text-sm leading-relaxed mb-6"
+              style={{ color: "rgba(245,245,220,0.7)" }}
+            >
+              In 1957, a dream was born in Meerut. Shri Arjun Das Ahuja's vision
+              of pure, unadulterated dairy has transcended generations — from
+              the ancient Bilona churning of A2 ghee to the warm, home-cooked
+              meals of Ibad Shah's Salamat Shahji Dairy. Every product carries
+              67 years of family trust and an unwavering promise of quality.
+            </p>
+            <button
+              type="button"
+              onClick={() => navigate("about")}
+              className="btn-gold px-8 py-3.5 rounded-full text-xs tracking-widest uppercase"
+              data-ocid="home.about_teaser.button"
+            >
+              Read Our Full Story
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   const { navigate } = useNavigation();
 
   return (
-    <div>
+    <main data-ocid="home.page">
       {/* HERO */}
       <section
-        className="relative min-h-[85vh] flex items-center"
-        style={{ overflow: "hidden" }}
-        data-ocid="home.page"
+        className="relative min-h-screen flex flex-col items-center justify-center"
+        style={{ paddingTop: "72px" }}
       >
         <img
-          src="/assets/generated/hero-khurchan.dim_1400x600.jpg"
-          alt="Khurja Special Khurchan"
+          src="/assets/generated/hero-ghee-pour.dim_1600x900.jpg"
+          alt="Pure A2 Ghee"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(42,26,20,0.88) 0%, rgba(102,19,39,0.7) 50%, rgba(42,26,20,0.5) 100%)",
-          }}
+          style={{ background: "rgba(26,26,26,0.6)" }}
         />
-        {/* Paisley pattern overlay */}
-        <div className="absolute inset-0 maroon-pattern opacity-30" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-24">
+        <div className="relative z-10 text-center max-w-3xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl"
+            transition={{ duration: 0.9, ease: "easeOut" }}
           >
-            <div
-              className="inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-body font-semibold tracking-widest uppercase"
-              style={{
-                backgroundColor: "rgba(212,176,97,0.2)",
-                border: "1px solid var(--gold)",
-                color: "var(--gold)",
-              }}
+            <p
+              className="font-body text-xs tracking-[0.3em] uppercase mb-5"
+              style={{ color: "var(--gold-start)" }}
             >
-              Pure Desi Ghee Preparation · Since 1908
-            </div>
+              Pure A2 Dairy • Est. 1957
+            </p>
+
+            <div
+              className="w-20 h-px mx-auto mb-6"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, var(--gold-start), transparent)",
+              }}
+            />
 
             <h1
-              className="font-display font-bold leading-tight mb-4"
+              className="font-display font-bold leading-tight mb-6"
               style={{
-                fontSize: "clamp(2rem, 5vw, 3.5rem)",
+                fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
                 color: "var(--cream)",
               }}
             >
-              115+ Years of{" "}
-              <span className="gold-shimmer">Sweet Tradition</span>
+              Shahji Dairy: A Legacy of
               <br />
-              in Every Bite
+              <span className="gold-shimmer">Purity Since 1957</span>
             </h1>
 
             <p
-              className="font-body text-base lg:text-lg mb-8 leading-relaxed"
-              style={{ color: "rgba(243,230,209,0.85)" }}
+              className="font-body text-base lg:text-lg leading-relaxed mb-10"
+              style={{ color: "rgba(245,245,220,0.8)" }}
             >
-              Made with 100% Pure Desi Ghee. Experience the Taste of Khurja's
-              Finest Legacy. Hamare haath se bani mithaiyaan aapke ghar mein
-              meethaas laayein.
+              Founded by Late Shri Arjun Das Ahuja. From the roots of Meerut to
+              the heart of Delhi.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <button
-                type="button"
-                onClick={() => navigate("products")}
-                className="px-8 py-3.5 rounded font-display font-semibold text-sm tracking-widest uppercase transition-all hover:shadow-gold hover:scale-105"
-                style={{
-                  backgroundColor: "var(--gold)",
-                  color: "var(--dark-brown)",
-                }}
-                data-ocid="home.products.primary_button"
-              >
-                Hamare Products Dekhein
-              </button>
+            <div className="flex flex-wrap justify-center gap-4">
               <button
                 type="button"
                 onClick={() => navigate("about")}
-                className="px-8 py-3.5 rounded font-display font-semibold text-sm tracking-widest uppercase transition-all hover:bg-white hover:bg-opacity-10"
-                style={{
-                  border: "1.5px solid var(--gold)",
-                  color: "var(--gold)",
-                }}
-                data-ocid="home.about.secondary_button"
+                className="btn-gold px-9 py-4 rounded-full text-sm tracking-widest uppercase"
+                data-ocid="home.hero.primary_button"
               >
-                Humari Kahani
+                Explore Our Heritage
               </button>
+              <a
+                href="https://wa.me/918979369843"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold-outline px-9 py-4 rounded-full text-sm tracking-widest uppercase"
+                data-ocid="home.hero.whatsapp_button"
+              >
+                Order on WhatsApp
+              </a>
             </div>
           </motion.div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="rounded-full"
-              style={{
-                width: i === 0 ? "24px" : "8px",
-                height: "8px",
-                backgroundColor:
-                  i === 0 ? "var(--gold)" : "rgba(212,176,97,0.4)",
-              }}
-            />
-          ))}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 scroll-bounce">
+          <ChevronDown size={28} style={{ color: "var(--gold-start)" }} />
         </div>
       </section>
 
-      {/* TRUST BADGES */}
-      <section
-        style={{
-          backgroundColor: "var(--maroon)",
-          borderTop: "2px solid var(--gold)",
-        }}
-        className="maroon-pattern"
-      >
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {trustBadges.map((badge) => (
-              <motion.div
-                key={badge.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="flex items-center gap-3"
-              >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    backgroundColor: "rgba(212,176,97,0.2)",
-                    border: "1px solid rgba(212,176,97,0.4)",
-                  }}
-                >
-                  <badge.icon size={18} style={{ color: "var(--gold)" }} />
-                </div>
-                <div>
-                  <div
-                    className="font-body font-semibold text-sm"
-                    style={{ color: "var(--cream)" }}
-                  >
-                    {badge.label}
-                  </div>
-                  <div
-                    className="text-xs font-body"
-                    style={{ color: "rgba(243,230,209,0.6)" }}
-                  >
-                    {badge.sub}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURED PRODUCTS */}
-      <section
-        className="heritage-pattern py-16 lg:py-24"
-        style={{ backgroundColor: "var(--cream)" }}
-        data-ocid="home.products.section"
-      >
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <div
-              className="text-xs font-body font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "var(--maroon)" }}
-            >
-              Humari Mishthaan
-            </div>
-            <h2
-              className="font-display text-3xl lg:text-4xl font-bold mb-3"
-              style={{ color: "var(--maroon)" }}
-            >
-              Curated Indulgence
-            </h2>
-            <OrnamentalDivider />
-            <p
-              className="font-body text-base max-w-xl mx-auto"
-              style={{ color: "var(--dark-brown)" }}
-            >
-              Made with 100% Pure Desi Ghee. Experience the Taste of Khurja's
-              Finest Legacy.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            {featuredProducts.map((p, i) => (
-              <motion.div
-                key={p.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <ProductCard {...p} index={i + 1} />
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <button
-              type="button"
-              onClick={() => navigate("products")}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded font-display font-semibold text-sm tracking-widest uppercase transition-all hover:shadow-maroon hover:scale-105"
-              style={{
-                backgroundColor: "var(--maroon)",
-                color: "var(--cream)",
-              }}
-              data-ocid="home.all_products.button"
-            >
-              Saari Mithaiyaan Dekhein <ChevronRight size={18} />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* WEDDING COLLECTION */}
-      <section
-        className="py-16 lg:py-24 maroon-pattern"
-        style={{ backgroundColor: "var(--maroon-dark)" }}
-        data-ocid="home.wedding.section"
-      >
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <h2
-              className="font-display text-3xl lg:text-4xl font-bold"
-              style={{ color: "var(--gold)" }}
-            >
-              The Wedding Collection
-            </h2>
-            <OrnamentalDivider color="var(--gold)" />
-          </motion.div>
-
-          <div
-            className="rounded-xl overflow-hidden flex flex-col lg:flex-row"
-            style={{
-              border: "1px solid rgba(212,176,97,0.3)",
-              backgroundColor: "rgba(42,26,20,0.4)",
-            }}
-          >
-            <div className="lg:w-1/2">
-              <img
-                src="/assets/generated/wedding-bhaji-box.dim_800x600.jpg"
-                alt="Premium Wedding Bhaji Box"
-                className="w-full h-64 lg:h-full object-cover"
-              />
-            </div>
-            <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
-              <div
-                className="text-xs font-body font-semibold tracking-widest uppercase mb-2"
-                style={{ color: "rgba(212,176,97,0.7)" }}
-              >
-                Khaas Uplabdh
-              </div>
-              <h3
-                className="font-display text-2xl lg:text-3xl font-bold mb-4"
-                style={{ color: "var(--cream)" }}
-              >
-                Celebrate Weddings with Shivlal Ustad
-              </h3>
-              <p
-                className="font-body text-sm leading-relaxed mb-6"
-                style={{ color: "rgba(243,230,209,0.8)" }}
-              >
-                Aapki shaadi aur celebration ke liye premium Bhaji Boxes. Pure
-                desi ghee ki mithaiyaan, traditional packaging, aur customized
-                options available hain.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={() => navigate("wedding")}
-                  className="px-6 py-3 rounded font-display font-semibold text-sm tracking-widest uppercase transition-all hover:shadow-gold hover:scale-105"
-                  style={{
-                    backgroundColor: "var(--gold)",
-                    color: "var(--dark-brown)",
-                  }}
-                  data-ocid="home.wedding.primary_button"
-                >
-                  Explore Wedding Gifts
-                </button>
-                <a
-                  href="https://wa.me/919897905864?text=Namaste%2C%20mujhe%20Wedding%20Bhaji%20Box%20ke%20baare%20mein%20jaankari%20chahiye."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded font-display font-semibold text-sm tracking-widest uppercase transition-all hover:scale-105"
-                  style={{
-                    border: "1.5px solid var(--gold)",
-                    color: "var(--gold)",
-                  }}
-                  data-ocid="home.wedding.whatsapp.button"
-                >
-                  <MessageCircle size={16} /> Customize Packs
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT SNIPPET */}
-      <section
-        className="heritage-pattern py-16 lg:py-24"
-        style={{ backgroundColor: "var(--cream)" }}
-      >
-        <div className="max-w-4xl mx-auto px-4 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div
-              className="text-xs font-body font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "var(--maroon)" }}
-            >
-              Hamare Baare Mein
-            </div>
-            <h2
-              className="font-display text-3xl lg:text-4xl font-bold mb-4"
-              style={{ color: "var(--maroon)" }}
-            >
-              Our Story
-            </h2>
-            <OrnamentalDivider />
-            <p
-              className="font-body text-base leading-relaxed mb-4"
-              style={{ color: "var(--dark-brown)" }}
-            >
-              Saan 1908 mein, Pt. Shivlal ji ne Khurja mein ek choti si
-              mishthaan ki dukaan shuru ki. Pure desi ghee se bani mithaiyaan,
-              haath ki kaarigaree, aur pyaar se bani recipes — yahi hamaari
-              pehchaan rahi hai.
-            </p>
-            <p
-              className="font-body text-base leading-relaxed mb-8"
-              style={{ color: "var(--dark-brown)" }}
-            >
-              Aaj, 115+ saal baad bhi, hum wahi parampara nibha rahe hain. Har
-              mithai mein wohi purana swad, wohi mehnat, wohi vishwas.
-            </p>
-            <button
-              type="button"
-              onClick={() => navigate("about")}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded font-display font-semibold text-sm tracking-widest uppercase transition-all hover:scale-105"
-              style={{
-                backgroundColor: "var(--maroon)",
-                color: "var(--cream)",
-              }}
-              data-ocid="home.about.button"
-            >
-              Poori Kahani Padhein <ChevronRight size={18} />
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CONTACT CTA */}
-      <section
-        style={{ backgroundColor: "var(--gold)" }}
-        className="py-12 text-center"
-      >
-        <div className="max-w-3xl mx-auto px-4">
-          <h2
-            className="font-display text-2xl lg:text-3xl font-bold mb-2"
-            style={{ color: "var(--dark-brown)" }}
-          >
-            Aaj Hi Order Karein!
-          </h2>
-          <p
-            className="font-body text-sm mb-6"
-            style={{ color: "rgba(42,26,20,0.8)" }}
-          >
-            WhatsApp par contact karein ya seedha dukaan par aayein
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://wa.me/919897905864"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-8 py-3.5 rounded font-display font-semibold text-sm tracking-widest uppercase transition-all hover:scale-105 hover:shadow-lg"
-              style={{ backgroundColor: "#25D366", color: "white" }}
-              data-ocid="home.whatsapp.primary_button"
-            >
-              <MessageCircle size={18} /> WhatsApp par Karein
-            </a>
-            <button
-              type="button"
-              onClick={() => navigate("contact")}
-              className="flex items-center gap-2 px-8 py-3.5 rounded font-display font-semibold text-sm tracking-widest uppercase transition-all hover:scale-105"
-              style={{
-                backgroundColor: "var(--dark-brown)",
-                color: "var(--cream)",
-              }}
-              data-ocid="home.contact.button"
-            >
-              Contact Details
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
+      <TrustBar />
+      <HeritageSplitScreen />
+      <ParallaxSection />
+      <SignatureMenu />
+      <ProductCategories />
+      <AboutTeaser />
+    </main>
   );
 }
